@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 class App extends Component {
+  state = {
+    firstName: '',
+    lastName: '',
+  }
+
+  onChangeFirstName = ({ target }) => this.setState({ firstName: target.value });
+
+  onChangeLastName = ({ target }) => this.setState({ lastName: target.value });
+
   render() {
+    const { firstName, lastName } = this.state;
+    const { onChangeFirstName, onChangeLastName } = this;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <h1>Full Name is: {firstName} {lastName}</h1>
+        <label>First Name</label>
+        <input onChange={onChangeFirstName} value={firstName} />
+        <label>Last Name</label>
+        <input onChange={onChangeLastName} value={lastName} />
       </div>
     );
   }
