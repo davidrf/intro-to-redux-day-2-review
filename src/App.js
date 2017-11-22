@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { changeFirstName, changeLastName } from './rootReducer'
 
 class App extends Component {
-  state = {
-    firstName: '',
-    lastName: '',
-  }
+  onChangeFirstName = ({ target }) => this.props.changeFirstName(target.value);
 
-  onChangeFirstName = ({ target }) => this.setState({ firstName: target.value });
-
-  onChangeLastName = ({ target }) => this.setState({ lastName: target.value });
+  onChangeLastName = ({ target }) => this.props.changeLastName(target.value);
 
   render() {
-    const { firstName, lastName } = this.state;
+    const { firstName, lastName } = this.props;
     const { onChangeFirstName, onChangeLastName } = this;
 
     return (
@@ -26,4 +23,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  firstName: state.firstName,
+  lastName: state.lastName,
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeFirstName: value => dispatch(changeFirstName(value)),
+  changeLastName: value => dispatch(changeLastName(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
