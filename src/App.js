@@ -28,9 +28,14 @@ const mapStateToProps = state => ({
   lastName: state.lastName,
 });
 
-const mapDispatchToProps = dispatch => ({
-  changeFirstName: value => dispatch(changeFirstName(value)),
-  changeLastName: value => dispatch(changeLastName(value)),
+// const mapDispatchToProps = dispatch => ({
+  // changeFirstName: value => dispatch(changeFirstName(value)),
+  // changeLastName: value => dispatch(changeLastName(value)),
+// });
+
+const mapDispatchToProps = ({
+  changeFirstName,
+  changeLastName,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
